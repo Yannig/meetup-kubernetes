@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mailhog
+  labels:
+    app: mailhog
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: mailhog
+  template:
+    metadata:
+      labels:
+        app: mailhog
+    spec:
+      containers:
+      - image: mailhog/mailhog:latest
+        name: mailhog

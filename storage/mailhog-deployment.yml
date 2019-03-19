@@ -19,8 +19,8 @@ spec:
           name: mailhog
           volumeMounts:
             - mountPath: /maildir
-              name:      mailhog
+              name:      mailhog-maildir
           command: ["MailHog", "-storage=maildir", "-maildir-path=/maildir"]
       volumes:
-        - name: mailhog
-          persistentVolumeClaim: { claimName: mailhog }
+        - name: mailhog-maildir
+          persistentVolumeClaim: { claimName: mailhog-maildir }

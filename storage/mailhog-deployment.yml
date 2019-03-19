@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mailhog
+  labels:
+    app: mailhog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mailhog
+  template:
+    metadata:
+      labels:
+        app: mailhog
+    spec:
+      containers:
+        - image: mailhog/mailhog
+          name: mailhog
+          volumeMounts:
+            - mountPath: /maildir
+              name:      mailhog
+          command: ["MailHog", "-storage=maildir", "-maildir-path=/maildir"]
+      volumes:
+        - name: mailhog
+          persistentVolumeClaim: { claimName: mailhog }

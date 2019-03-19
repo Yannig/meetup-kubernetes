@@ -1,0 +1,7 @@
+From: App <meetup@mailhog.local>
+To: Test <meetup@mailhog.local>
+Subject: Bonsoir
+
+Bienvenue au Meetup et bonne soirée !
+
+Yannig

@@ -10,6 +10,9 @@ deploy-mailhog:
 storage:
 	kubectl apply -f storage/
 
+ingress:
+	kubectl apply -f ingress/
+
 delete-deployment:
 	kubectl delete deployment mailhog
 
@@ -18,3 +21,10 @@ port-forward:
 
 send-mail: mhsendmail
 	cat email.txt | ./mhsendmail --smtp-addr="0.0.0.0:1025" test@mailhog.local
+
+delete:
+	kubectl delete deployment mailhog ;\
+	kubectl delete service mailhog ;\
+	kubectl delete ingress mailhog ;\
+	kubectl delete pvc mailhog-maildir ;\
+	echo done

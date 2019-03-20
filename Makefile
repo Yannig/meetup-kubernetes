@@ -1,20 +1,12 @@
 # Test réalisé avec Minikube
+MHSENDMAIL_URL ?= https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64
 
 mhsendmail:
-	wget https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 -O mhsendmail
+	wget $(MHSENDMAIL_URL) -O mhsendmail
 	chmod +x mhsendmail
 
 deploy-mailhog:
-	kubectl apply -f deployment/mailhog-deployment.yml
-
-pvc:
-	kubectl apply -f storage/
-
-publish:
-	cat ingress/* | sed "s/IP_MINIKUBE/$$(minikube ip)/" | kubectl apply -f -
-
-delete-deployment:
-	kubectl delete deployment mailhog
+	cat mailhog/* | sed "s/IP_MINIKUBE/$$(minikube ip)/" | kubectl apply -f -
 
 port-forward:
 	kubectl port-forward deployment/mailhog 1025 8025

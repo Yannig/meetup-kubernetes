@@ -1,8 +1,13 @@
+# Test réalisé avec Minikube
+
 mhsendmail:
 	wget https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 -O mhsendmail
 	chmod +x mhsendmail
 
-demo-storage:
+deploy-mailhog:
+	kubectl apply -f deployment/mailhog-deployment.yml
+
+storage:
 	kubectl apply -f storage/
 
 delete-deployment:

@@ -7,11 +7,11 @@ mhsendmail:
 deploy-mailhog:
 	kubectl apply -f deployment/mailhog-deployment.yml
 
-storage:
+pvc:
 	kubectl apply -f storage/
 
-ingress:
-	kubectl apply -f ingress/
+publish:
+	cat ingress/* | sed "s/IP_MINIKUBE/$$(minikube ip)/" | kubectl apply -f -
 
 delete-deployment:
 	kubectl delete deployment mailhog

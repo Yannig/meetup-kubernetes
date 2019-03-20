@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: mailhog
+  name: mailhog
+spec:
+  rules:
+  - host: mailhog.IP_MINIKUBE.nip.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: mailhog
+          servicePort: 8025

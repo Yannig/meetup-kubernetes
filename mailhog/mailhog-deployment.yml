@@ -18,6 +18,7 @@ spec:
       containers:
         - image: mailhog/mailhog
           name: mailhog
+          imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /maildir
               name:      mailhog-maildir
